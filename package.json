@@ -1,0 +1,22 @@
+{
+  "name": "swap-hot",
+  "version": "0.0.1",
+  "description": "module hotswapping",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "author": "Nick Bottomley (github.com/nickb1080)",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-eslint": "^7.1.1",
+    "eslint": "^3.12.1"
+  },
+  "dependencies": {
+    "intercept-require": "^1.1.0",
+    "make-module": "^3.0.0"
+  }
+}
