@@ -1,14 +1,13 @@
 const Watcher = require("./lib/Watcher");
-const Updater = require("./lib/Updater");
+const Swapper = require("./lib/Swapper");
 
 function main (root) {
-  const watcher = new Watcher({ root }).start();
-  const updater = new Updater({ root }).start();
-  watcher.on("change", filename => updater.update(filename));
-  return { watcher, updater };
+  const watcher = new Watcher({ root }).listen();
+  const swapper = new Swapper({ root });
+  return { watcher, swapper };
 }
 
 main.Watcher = Watcher;
-main.Updater = Updater;
+main.Swapper = Swapper;
 
 module.exports = main;
