@@ -57,7 +57,7 @@ swapper.on("update", function (filename) {
 ## Limitations
 Objects that live for the duration of the application won't be reloaded.
 
-```
+```js
 const clientInstance = new Client(); // <-- changes to Client class won't be reflected in clientInstance
 
 const app = express();
