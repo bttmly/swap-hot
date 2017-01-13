@@ -53,3 +53,20 @@ swapper.on("update", function (filename) {
   });
 })
 ```
+
+## Limitations
+Objects that live for the duration of the application won't be reloaded.
+
+```
+const clientInstance = new Client(); // <-- changes to Client class won't be reflected in clientInstance
+
+const app = express();
+app.use(myConfigurableMiddleware({key: "value"})) // <-- changes not reflected in behavior, because instance already created
+app.use(myOtherMiddleware) // <-- changes will be reflected in behavior, since each request causes this function to be called
+app.use(function (req, res, next) {
+  req.client = new Client(); // <-- every request will get an up-to-date client
+  next();  
+});
+```
+
+It can be tricky to build the intuition for how this works. In general if the application uses a single "instance" of something you're changing (could be an actual class instance, or merely a function or object returned from a function call) it won't be reloaded because the instance the app is using has already been created. Hot reloaded does work when the app does something like create a new instance of something for each request, or call a function every time some event happens.
